@@ -1,7 +1,3 @@
-package Server;
-
-import Client.GameClientInterface;
-
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
@@ -28,5 +24,13 @@ public class GameServer extends UnicastRemoteObject implements GameServerInterfa
         while(i < chatClients.size()){
             chatClients.get(i++).getMoves(message);
         }
+    }
+
+    @Override
+    public void soloGameGUI(int bgLength, String playerName) throws RemoteException{
+        System.out.println();
+        BattleshipBoard playerOne = new BattleshipBoard(bgLength);
+        BattleshipBoard ai = new BattleshipBoard(bgLength);
+        BoardGUI playerOneGUI = new BoardGUI(playerOne, ai, bgLength, playerName);
     }
 }
